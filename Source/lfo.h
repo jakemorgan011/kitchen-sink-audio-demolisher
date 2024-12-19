@@ -44,7 +44,7 @@ private:
     float frequency = 1.f;
     
 };
-
+// not done.
 class triangle_lfo {
 public:
     triangle_lfo(){

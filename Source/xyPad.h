@@ -15,7 +15,7 @@ class xyHandle : public juce::Component {
 public:
     
     void setColour(juce::Colour c){
-        colourSelect = &c;
+        colourSelect = c;
     }
     
     void paint(juce::Graphics& g) override;
@@ -32,8 +32,9 @@ public:
     
     void deviate(std::string pos);
     
+    juce::Colour colourSelect;
+    
 private:
-    juce::Colour* colourSelect = nullptr;
     
     juce::ComponentDragger dragger;
     

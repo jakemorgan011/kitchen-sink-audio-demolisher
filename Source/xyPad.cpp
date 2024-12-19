@@ -27,9 +27,9 @@ void xyBar::paint(juce::Graphics& g){
 
 void xyHandle::paint(juce::Graphics& g){
     juce::Path p;
-    g.setColour(juce::Colours::black);
+    g.setColour(colourSelect);
     //g.fillPath(p);
-    //g.fillEllipse(250, 125, 20, 20);
+    g.fillEllipse(250, 125, 20, 20);
     g.fillEllipse(getLocalBounds().toFloat());
 }
 
@@ -83,7 +83,10 @@ void xyHandle::deviate(std::string pos){
 xyPad::xyPad(){
 //    xyHandleB.setColour(juce::Colours::blue);
 //    xyHandleR.setColour(juce::Colours::red);
-    xyHandle.setColour(juce::Colours::lime);
+//    xyHandle.setColour(juce::Colours::lime);
+    xyHandle.colourSelect = juce::Colours::lime;
+    xyHandleR.colourSelect = juce::Colours::red;
+    xyHandleB.colourSelect = juce::Colours::blue;
     xyHandle.deviate("none");
     xyHandleR.deviate("left");
     xyHandleB.deviate("right");
@@ -97,6 +100,9 @@ xyPad::~xyPad(){
 }
 
 void xyPad::paint(juce::Graphics& g){
+    xyHandle.setColour(juce::Colours::blue);
+    xyHandleB.setColour(juce::Colours::lime);
+    xyHandleR.setColour(juce::Colours::red);
 }
 
 void xyPad::resized(){

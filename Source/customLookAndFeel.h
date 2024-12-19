@@ -33,10 +33,12 @@ public:
         p.addRectangle(-pointerThickness * 0.5f, -radius, pointerThickness, pointerLength);
         p.applyTransform(juce::AffineTransform::rotation(angle).translated(centreX, centreY));
         
-        g.setColour(juce::Colours::black);
+        g.setColour(colourSelect);
         g.fillPath(p);
         
     }
+    
+    juce::Colour colourSelect = juce::Colours::black;
     
 private:
 };

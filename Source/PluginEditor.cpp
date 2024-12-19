@@ -17,8 +17,11 @@ SinkAudioProcessorEditor::SinkAudioProcessorEditor (SinkAudioProcessor& p)
     addAndMakeVisible(audioProcessor.visualizer);
     addAndMakeVisible(audioProcessor.xyPad);
     
+    widthLookAndFeelB.colourSelect = juce::Colours::blue;
+    widthLookAndFeelG.colourSelect = juce::Colours::lime;
+    widthLookAndFeelR.colourSelect = juce::Colours::red;
     // everything is normalized.
-    
+    stutterWidthSlider.setLookAndFeel(&widthLookAndFeelB);
     stutterWidthSlider.setRange(0.f,1.0f);
     stutterWidthSlider.setSliderStyle(juce::Slider::RotaryVerticalDrag);
     stutterWidthSlider.setTextBoxStyle(juce::Slider::NoTextBox, true, 0,0);
@@ -31,6 +34,7 @@ SinkAudioProcessorEditor::SinkAudioProcessorEditor (SinkAudioProcessor& p)
     addAndMakeVisible(stutterTimeSlider);
     stutterTimeSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.getVTS(),"stutter_time", stutterTimeSlider));
     
+    shiftWidthSlider.setLookAndFeel(&widthLookAndFeelR);
     shiftWidthSlider.setRange(0.f,1.0f);
     shiftWidthSlider.setSliderStyle(juce::Slider::RotaryVerticalDrag);
     shiftWidthSlider.setTextBoxStyle(juce::Slider::NoTextBox, true, 0, 0);
@@ -43,6 +47,7 @@ SinkAudioProcessorEditor::SinkAudioProcessorEditor (SinkAudioProcessor& p)
     addAndMakeVisible(shiftAmountSlider);
     shiftAmountSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.getVTS(), "shift_amount", shiftAmountSlider));
     
+    distortWidthSlider.setLookAndFeel(&widthLookAndFeelG);
     distortWidthSlider.setRange(0.f,1.0f);
     distortWidthSlider.setSliderStyle(juce::Slider::RotaryVerticalDrag);
     distortWidthSlider.setTextBoxStyle(juce::Slider::NoTextBox, true, 0, 0);
@@ -61,8 +66,16 @@ SinkAudioProcessorEditor::SinkAudioProcessorEditor (SinkAudioProcessor& p)
     addAndMakeVisible(dryWetSlider);
     dryWetSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.getVTS(),"dry_wet", dryWetSlider));
     
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
+    widthLabel.setText("Widths", juce::dontSendNotification);
+    addAndMakeVisible(widthLabel);
+    widthLabel.setColour(1, juce::Colours::lime);
+    
+    modLabel.setText("fx Mod", juce::dontSendNotification);
+    addAndMakeVisible(modLabel);
+    
+    dryWetLabel.setText("Dry/Wet", juce::dontSendNotification);
+    addAndMakeVisible(dryWetLabel);
+    
     setSize (500, 400);
 }
 
@@ -91,6 +104,11 @@ void SinkAudioProcessorEditor::resized()
     distortWidthSlider.setBounds(240,0,100,100);
     distortAmountSlider.setBounds(300, 100, 50, 50);
     dryWetSlider.setBounds(380,0,75,75);
+    
+    widthLabel.setBounds(400,150,50,25);
+    modLabel.setBounds(400, 200, 50, 25);
+    dryWetLabel.setBounds(380,75,50,25);
+    
     
     // lol i made the signal mono but I don't know how to change the buffer to mono so I stretch the second signal off the screen
     // it is really stupid sorry.

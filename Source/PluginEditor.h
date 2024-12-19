@@ -28,6 +28,9 @@ public:
 private:
     
     customLookAndFeel customLookAndFeel;
+    class customLookAndFeel widthLookAndFeelG;
+    class customLookAndFeel widthLookAndFeelR;
+    class customLookAndFeel widthLookAndFeelB;
     
     juce::Slider stutterWidthSlider;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> stutterWidthSliderAttachment;
@@ -50,6 +53,9 @@ private:
     juce::Slider dryWetSlider;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> dryWetSliderAttachment;
     
+    juce::Label widthLabel;
+    juce::Label modLabel;
+    juce::Label dryWetLabel;
     
     // idek
     /// TODO: be able to access the vts from the xypad.

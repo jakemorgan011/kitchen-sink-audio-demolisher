@@ -64,7 +64,7 @@ void threshold::processBlock(juce::AudioBuffer<float>& inBuffer, stutter& stutte
         float ampTop = smoothedAmpTopThresh.getNextValue();
         float ampBot = smoothedAmpBotThresh.getNextValue();
         
-        // stutter
+        // delay
         if(abs_left < topThresh && abs_left > botThresh){
             left_channel[i] = s_copy_left[i];
         }else{left_channel[i] = left_channel[i];}
